@@ -9,6 +9,10 @@ def main():
 
     pygame.init()
 
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = updatable, drawable
+
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption("Asteroids")
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
@@ -24,8 +28,14 @@ def main():
                 running = False
 
         screen.fill((0, 0, 0))
-        player.draw(screen)
-        player.update(dt)
+        for sprite in drawable:
+            sprite.draw(screen)
+
+        for sprite in updatable:
+            sprite.update(dt)
+
+        # player.draw(screen)
+        # player.update(dt)
 
         pygame.display.flip()
 
