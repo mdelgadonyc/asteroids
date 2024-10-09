@@ -51,7 +51,7 @@ def main():
             for shot in shots:
                 if shot.detection(asteroid):
                     shot.kill()
-                    asteroid.kill()
+                    asteroid.split()
                     break
         
         pygame.display.flip()
